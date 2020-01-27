@@ -36,6 +36,8 @@ int main()
 {
     int arr[] = {1, 3, 5, 10, 11, 2, 4, -1};
 
+    printf("\nSelection sort algorithm:\n");
+
     printArrey(arr, sizeof(arr) / sizeof(arr[0]));
 
     select_sort(arr, sizeof(arr) / sizeof(arr[0]));
