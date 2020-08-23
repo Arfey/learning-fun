@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile "org.apache.lucene:lucene-core:8.5.1"
+    compile "org.apache.lucene:lucene-analyzers-common:8.5.1"
+    compile "org.apache.lucene:lucene-backward-codecs:8.5.1"
+    compile "org.apache.lucene:lucene-grouping:8.5.1"
+    compile "org.apache.lucene:lucene-highlighter:8.5.1"
+    compile "org.apache.lucene:lucene-join:8.5.1"
+    compile "org.apache.lucene:lucene-memory:8.5.1"
+    compile "org.apache.lucene:lucene-misc:8.5.1"
+    compile "org.apache.lucene:lucene-queries:8.5.1"
+    compile "org.apache.lucene:lucene-queryparser:8.5.1"
+    compile "org.apache.lucene:lucene-sandbox:8.5.1"
+    compile "org.apache.lucene:lucene-spatial-extras:8.5.1"
+    compile "org.apache.lucene:lucene-spatial3d:8.5.1"
+    compile "org.apache.lucene:lucene-suggest:8.5.1"
+}
