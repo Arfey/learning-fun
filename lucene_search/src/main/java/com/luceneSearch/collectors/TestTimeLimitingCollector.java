@@ -59,10 +59,7 @@ public class TestTimeLimitingCollector {
         );
 
         try {
-            searcher.search(
-                    query,
-                    limitCollector
-            );
+            searcher.search(query, limitCollector);
         } catch (TimeLimitingCollector.TimeExceededException e) {
             // do nothing
         }
