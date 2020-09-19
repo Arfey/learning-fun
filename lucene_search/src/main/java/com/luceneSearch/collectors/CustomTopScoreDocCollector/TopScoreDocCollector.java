@@ -29,8 +29,9 @@ public class TopScoreDocCollector extends TopDocCollector {
             @Override
             public void collect(int doc) throws IOException {
                 Float score = scorer.score();
-                pq.addDoc(new ScoreDoc(doc, score));
+                pq.addDoc(new ScoreDoc(context.docBase + doc, score));
                 totalHits++;
+                // todo: added test compare with native search top doc collector
             }
         };
     }

@@ -15,7 +15,7 @@ public class ScorePriorityQueue extends Queue<ScoreDoc> {
     public void addDoc(ScoreDoc scoreDoc) {
         items.add(scoreDoc);
 
-        System.out.println("Info: " + "max: " + top_item + " size: " + items.size() + " score: " + scoreDoc.score);
+        System.out.println("Info: " + "max: " + top_item + " size: " + items.size() + " score: " + scoreDoc.score + " docId: " + scoreDoc.doc);
 
         if (items.size() > top_item) {
             Collections.sort(items);
