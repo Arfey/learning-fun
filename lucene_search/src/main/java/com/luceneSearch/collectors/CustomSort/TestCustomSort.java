@@ -50,10 +50,7 @@ public class TestCustomSort {
 
     public IndexWriter createIndexWriter() throws IOException {
         directory = new RAMDirectory();
-        IndexWriter writer = new IndexWriter(
-                directory,
-                new IndexWriterConfig()
-        );
+        IndexWriter writer = new IndexWriter(directory, new IndexWriterConfig());
 
         return writer;
     }
@@ -62,10 +59,12 @@ public class TestCustomSort {
     public Document createDocument(String type, Integer x, Integer y, String name) {
         Document doc = new Document();
 
+        // create simple stored fields
         doc.add(new StringField(Constants.DOC_TYPE, type, Field.Store.YES));
         doc.add(new StringField(Constants.DOC_NAME, name, Field.Store.YES));
 
 
+        // create doc values field
         byte[] coordinates = {Integer.valueOf(x).byteValue(), Integer.valueOf(y).byteValue()};
 
         doc.add(new BinaryDocValuesField(Constants.DOC_COORDINATES, new BytesRef(coordinates)));
@@ -75,6 +74,7 @@ public class TestCustomSort {
 
     public void testSearch() throws IOException {
         IndexSearcher searcher = new IndexSearcher(DirectoryReader.open(directory));
+
         Query query = new TermQuery(new Term(Constants.DOC_TYPE, "restaurant"));
         Sort sort = new Sort(new SortField(Constants.DOC_COORDINATES, new DistanceSortComparatorSource(0, 0)));
 
@@ -82,7 +82,10 @@ public class TestCustomSort {
 
         for (ScoreDoc doc: result.scoreDocs) {
             Document document = searcher.doc(doc.doc);
-            System.out.println("id: " + doc.doc + " name: " +document.getField(Constants.DOC_NAME).stringValue());
+            System.out.println(
+                    "id: " + doc.doc + " " +
+                    "name: " +document.getField(Constants.DOC_NAME).stringValue()
+            );
         }
     }
 
