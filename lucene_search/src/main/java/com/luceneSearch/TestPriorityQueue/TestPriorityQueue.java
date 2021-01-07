@@ -11,6 +11,7 @@ public class TestPriorityQueue {
         queue.add(new IntValue(5));
         queue.add(new IntValue(6));
         queue.add(new IntValue(7));
+        Integer.valueOf('1').toString();
 
 
 

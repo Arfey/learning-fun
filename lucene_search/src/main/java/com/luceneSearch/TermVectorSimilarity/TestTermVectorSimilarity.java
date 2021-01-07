@@ -60,6 +60,8 @@ public class TestTermVectorSimilarity {
 
 
         for (ScoreDoc doc: topDocs.scoreDocs) {
+            obj.reader.document(doc.doc);
+
             if (firstDoc == null) {
                 firstDoc = obj.getTermsMapFromDoc(doc.doc);
             }
