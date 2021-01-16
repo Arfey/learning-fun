@@ -1,4 +1,4 @@
-package elasticsearchplugins;
+package elasticsearchplugins.plugins;
 
 import org.elasticsearch.cluster.metadata.IndexNameExpressionResolver;
 import org.elasticsearch.cluster.node.DiscoveryNodes;
