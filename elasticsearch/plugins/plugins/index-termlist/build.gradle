@@ -1,0 +1,53 @@
+buildscript {
+    ext {
+        esVersion = "7.5.1"
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.elasticsearch.gradle:build-tools:${esVersion}"
+    }
+}
+
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'elasticsearch.esplugin'
+
+esplugin {
+    name rootProject.getName()
+    description "This is test implmentation of term list handler."
+    classname "elasticsearchplugins.plugins.IndexTermsListPlugin"
+    version = version
+    licenseFile rootProject.file('LICENSE.txt')
+    noticeFile rootProject.file('NOTICE.txt')
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
+    compile group: 'org.elasticsearch', name: 'elasticsearch', version: esVersion
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+licenseHeaders.enabled = false
+forbiddenApisTest.enabled = false
+
+test {
+    enabled = false
+}
+
+integTest {
+    enabled = false
+}
+
+forbiddenApisMain.enabled = false
+checkstyleMain.enabled = false
