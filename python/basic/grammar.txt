@@ -1,0 +1,38 @@
+// https://www.sigmdel.ca/michel/program/delphi/parser/parser1_en.html
+// https://www.bottlecaps.de/rr/ui
+
+
+expression
+    ::=  "VAR" IDENTEFIER "=" expression
+    ::= bool_expression | bool_expression (AND|OR) bool_expression
+    ::= (if_statement) | (while_statement) | (for_statement) | (function_statement) | call
+
+call ::= (function_statement("(" expression? ("," expression)*? ")")?)
+
+bool_expression
+    ::= not simple_expression
+    ::= simple_expression (LE|LEE|GR|GREE|EE|NEE) simple_expression
+
+simple_expression ::=  term | term "+" term | term "−" term
+term ::=	unar_factor | unar_factor "*" unar_factor | unar_factor "/" unar_factor
+unar_factor ::= "+" factor | "−" factor | not factor
+factor ::= 	number | (expression) | IDENTEFIER | string | array
+array ::= "[" + factor ("," factor)*? + "]"
+
+IDENTEFIER ::= [a-zA-Z_][0-9a-zA-Z_]+
+
+
+if_statement
+    ::= "IF" expression "THEN" expression
+    ::= "IF" expression "THEN" expression ("ELIF" expression "THEN" expression)*
+    ::= "IF" expression "THEN" expression ("ELIF" expression "THEN" expression)* "ELSE" expression
+
+while_statement:
+    ::= "while" expression "THEN" expression
+
+for_statement:
+    ::= "for" number "TO" number ("STEP" number)? "THEN" expression
+
+function_statement:
+    ::= "function" IDENTEFIER? ("(" IDENTEFIER? ("," IDENTEFIER)*? ")")? "->" expression
+
